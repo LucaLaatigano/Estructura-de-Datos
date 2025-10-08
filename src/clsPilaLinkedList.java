@@ -44,4 +44,10 @@ public class clsPilaLinkedList {
             System.out.println("Error muestra. Pila vacia");
         }
     }
+    Object verTope(){
+        if (!pilaVacia()){
+            return this.pila.getNodeInfo();
+        }
+        return null;
+    }
 }
