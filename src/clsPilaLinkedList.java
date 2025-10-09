@@ -50,4 +50,63 @@ public class clsPilaLinkedList {
         }
         return null;
     }
+    clsPilaLinkedList Coincide() {
+        clsPilaLinkedList pilaAux= new clsPilaLinkedList();
+        clsPilaLinkedList pilaFinal= new clsPilaLinkedList();
+        int posicion=1;
+        while(!pilaVacia()) {
+            Object elemento = sacar();
+            if(!elemento.equals(posicion)) {
+                pilaAux.meter(elemento);
+            }
+            posicion++;
+        }
+        while(!pilaAux.pilaVacia()) {
+            pilaFinal.meter(pilaAux.sacar());
+        }
+        return pilaFinal;
+    }
+
+    boolean reconocerFormato(String palabra) {
+        limpiaPila();
+        int i=0;
+        int longitud = palabra.length();
+        if(i>=longitud || palabra.charAt(i)!='a') {
+            return false;
+        }
+        while(i< longitud && palabra.charAt(i)=='a') {
+            meter('a');
+            i++;
+
+        }
+
+        if(i>=longitud||palabra.charAt(i)!='b') {
+            return false;
+        }
+        i++;
+
+        if(i>=longitud || palabra.charAt(i)!='a') {
+            return false;
+        }
+        while(i<longitud && palabra.charAt(i)=='a') {
+            meter('a');
+            i++;
+        }
+        if(i>=longitud||palabra.charAt(i)!='b') {
+            return false;
+        }
+        i++;
+
+        while(i<longitud && palabra.charAt(i)=='a') {
+            if(pilaVacia()) {
+                return false;
+            }
+            sacar();
+            i++;
+
+        }
+        return(i==longitud && pilaVacia());
+
+    }
+
 }

@@ -82,4 +82,5 @@ public class clsListaLinkedList {
     }
 
     clsNode getTope(){return tope;}
+
 }
