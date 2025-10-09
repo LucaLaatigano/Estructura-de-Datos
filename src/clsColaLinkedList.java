@@ -90,4 +90,46 @@ public class clsColaLinkedList {
 
         return colaResultante;
     }
+
+    //metodos para resolver el EJ10
+    void meterChar(String mensaje){
+        Object caracter;
+
+        for (int i=0;i<mensaje.length();i++) {
+            caracter = mensaje.substring(i, i+1);
+            if (!colaVacia()){
+                this.finalC.setNextNode(new clsNode(caracter));
+                this.finalC=this.finalC.getNextNode();
+            }else{
+                this.frenteC=this.finalC= new clsNode(caracter);
+            }
+        }
+    }
+    void Espejo(clsColaLinkedList objColaEspejo){
+        clsNode temp;
+        clsPilaLinkedList objPila = new clsPilaLinkedList();
+        if (!colaVacia()){
+            temp=this.frenteC;
+            while (temp!=null){
+                if (!(temp.getNodeInfo().toString().equals("a") || temp.getNodeInfo().toString().equals("e") || temp.getNodeInfo().toString().equals("i") || temp.getNodeInfo().toString().equals("o") || temp.getNodeInfo().toString().equals("u")))
+                    objPila.meter(temp.getNodeInfo().toString());
+                else
+                {
+                    while (!objPila.pilaVacia()) {
+                        objColaEspejo.meter(objPila.sacar().toString());
+                    }
+                }
+                if (objPila.pilaVacia())
+                    objColaEspejo.meter(temp.getNodeInfo().toString());
+                temp=temp.getNextNode();
+            }
+            while (!objPila.pilaVacia()) {
+                objColaEspejo.meter(objPila.sacar().toString());
+            }
+
+        }else{
+            System.out.println("Error muestra. Cola vacia");
+        }
+    }
+
 }
