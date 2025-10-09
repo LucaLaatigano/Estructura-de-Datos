@@ -53,4 +53,41 @@ public class clsColaLinkedList {
             System.out.println("Error muestra. Cola vacia");
         }
     }
+
+
+    //METODOS AGREGADOS DEL EJERCICIO 9
+    public clsColaLinkedList inversa() {
+        clsPilaLinkedList pilaAuxiliar = new clsPilaLinkedList();
+        clsColaLinkedList colaInversa = new clsColaLinkedList();
+        while (!this.colaVacia()) {
+            pilaAuxiliar.meter(this.sacar());
+        }
+
+        while (!pilaAuxiliar.pilaVacia()) {
+            colaInversa.meter(pilaAuxiliar.sacar());
+        }
+
+        return colaInversa;
+    }
+
+    public void concatenar(clsColaLinkedList otraCola) {
+        while (!otraCola.colaVacia()) {
+            this.meter(otraCola.sacar());
+        }
+    }
+
+    public clsColaLinkedList intercalar(clsColaLinkedList otraCola) {
+        clsColaLinkedList colaResultante = new clsColaLinkedList();
+        while (!this.colaVacia() || !otraCola.colaVacia()) {
+            if (!this.colaVacia()) {
+                colaResultante.meter(this.sacar());
+            }
+
+            if (!otraCola.colaVacia()) {
+                colaResultante.meter(otraCola.sacar());
+            }
+        }
+
+        return colaResultante;
+    }
 }
