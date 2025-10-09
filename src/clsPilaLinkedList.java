@@ -108,5 +108,4 @@ public class clsPilaLinkedList {
         return(i==longitud && pilaVacia());
 
     }
-
 }
