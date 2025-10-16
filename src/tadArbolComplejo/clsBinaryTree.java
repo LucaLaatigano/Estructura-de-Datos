@@ -24,18 +24,26 @@ public abstract class clsBinaryTree implements TADArbol{
 			imprimir(node.getNodeInfo());
 			inOrder(node.getRightChild());
 		}
-	}	
+	}
 
 	
 	
 	
 	public void preOrder(clsBinaryTreeNode node){
-      // completar
+		if (node != null) {
+			imprimir(node.getNodeInfo());
+			preOrder(node.getLeftChild());
+			preOrder(node.getRightChild());
+		}
 	}
 	
 	
 	public void postOrder(clsBinaryTreeNode node){
-		// completar
+		if (node != null) {
+			postOrder(node.getLeftChild());
+			postOrder(node.getRightChild());
+			imprimir(node.getNodeInfo());
+		}
 	}	
 	
 	
@@ -45,12 +53,12 @@ public abstract class clsBinaryTree implements TADArbol{
 	
 	
 	public void muestraPreOrder(){
-		// completar
+		preOrder(this.root);
 	}	
 
 	
 	public void muestraPostOrder(){
-		// completar
+		postOrder(this.root);
 	}
 	
 	
