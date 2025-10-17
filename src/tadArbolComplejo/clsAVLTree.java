@@ -169,7 +169,55 @@ public  abstract class clsAVLTree {
 		 else
 			 return b;
 	}
-	
+	private void actualizarAltura(clsAVLNode node) {
+		if (node != null) {
+			int izq = height(node.getLeftChild());
+			int der = height(node.getRightChild());
+			node.setHeight(max(izq, der) + 1);
+		}
+	}
 
+	private clsAVLNode meterR(clsAVLNode node, Object nodeInfo){
+
+		if (node==null){
+			node= new clsAVLNode(nodeInfo);
+		}else {
+
+			if (mayor(node.getNodeInfo(), nodeInfo)){
+				node.setLeftChild(meterR(node.getLeftChild(),nodeInfo));
+				node =balancear(node);
+			} else {
+				// es menor
+				node.setRightChild(meterR(node.getRightChild(),nodeInfo));
+				node= balancear(node);
+			}
+		}
+
+		actualizarAltura(node);
+
+		return node;
+	}
+
+	public clsAVLNode rotacionSimple (clsAVLNode node, boolean esIzquierda){
+		clsAVLNode temp;
+		if (esIzquierda){
+			temp=node.getLeftChild();
+			node.setLeftChild(temp.getRightChild());
+			temp.setRightChild(node);
+
+			actualizarAltura(node);
+			actualizarAltura(temp);
+
+		}else{
+			temp=node.getRightChild();
+			node.setRightChild(temp.getLeftChild());
+			temp.setLeftChild(node);
+
+			actualizarAltura(node);
+			actualizarAltura(temp);
+		}
+
+		return temp;
+	}
 }
 
